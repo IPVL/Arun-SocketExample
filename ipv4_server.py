@@ -1,11 +1,12 @@
 __author__ = 'arun'
 # Echo server program
 import socket
-HOST = '0:0:0:0:0:FFFF:C0A8:01F3'                 # Symbolic name meaning all available interfaces
-PORT = 50007              # Arbitrary non-privileged port
-s = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
+HOST = '192.168.1.243'                 # Symbolic name meaning all available interfaces
+PORT = 60007              # Arbitrary non-privileged port
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+#sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 s.bind((HOST, PORT))
-s.listen(1)
+s.listen(0)
 print "\n\n"
 print "s.family: ", s.family
 print "Hello I am arun from server."
@@ -13,14 +14,21 @@ print "s.type: ", s.type
 print "s.proto: ", s.proto
 print "s.fileno: ", s.fileno
 print "\n"
-conn, addr = s.accept()
-print 'Connected by', addr
-print "conn : ", conn
+
+x = 1
+
 while 1:
+    conn, addr = s.accept()
+    print 'Connected by', addr
+    print "conn : ", conn
+    x = x + 1
+    print "server ", x
+#while 1:
     data = conn.recv(1024)
     if not data: break
     conn.sendall(data)
-conn.close()
+
+
 
 
 

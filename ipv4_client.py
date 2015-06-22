@@ -1,21 +1,24 @@
 __author__ = 'arun'
 # Echo client program
 import socket
-HOST = '0:0:0:0:0:FFFF:C0A8:01F3' #'192.168.1.243'    # The remote host
-PORT = 50007              # The same port as used by the server
+HOST = '192.168.1.243' #'192.168.1.243'    # The remote host
+PORT = 60007              # The same port as used by the server
 # s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
-print "\n\n"
-print "s.family: ", s.family
-print "s.type: ", s.type
-print "Hello I am akkas from client."
-print "s.proto: ", s.proto
-print "s.fileno: ", s.fileno
-s.connect((HOST, PORT))
-s.sendall('Hello, world')
-data = s.recv(1024)
-s.close()
-print 'Received', repr(data)
+for x in range(0, 130000):
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    print "\n\n"
+    print "s.family: ", s.family
+    print "s.type: ", s.type
+    print "Hello I am akkas from client."
+    print "s.proto: ", s.proto
+    print "s.fileno: ", s.fileno
+
+    s.connect((HOST, PORT))
+    s.sendall('Hello, world ')
+    data = s.recv(1024)
+    print 'Received', repr(data) , x
+    s.close()
+
 
 
 
